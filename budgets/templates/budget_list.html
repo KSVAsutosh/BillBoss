@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+
+        <h2>Budgets</h2>
+
+        <a href="{% url 'add_budget' %}"
+           class="btn btn-success">
+
+            Add Budget
+
+        </a>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Month</th>
+                        <th>Year</th>
+                        <th>Action</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for budget in budgets %}
+
+                    <tr>
+
+                        <td>
+                            {{ budget.category }}
+                        </td>
+
+                        <td>
+                            ₹ {{ budget.amount }}
+                        </td>
+
+                        <td>
+                            {{ budget.month }}
+                        </td>
+
+                        <td>
+                            {{ budget.year }}
+                        </td>
+
+                        <td>
+
+                            <a href="{% url 'edit_budget' budget.id %}"
+                               class="btn btn-warning btn-sm">
+
+                               Edit
+
+                            </a>
+
+                            <a href="{% url 'delete_budget' budget.id %}"
+                               class="btn btn-danger btn-sm">
+
+                               Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+
+                        <td colspan="5"
+                            class="text-center">
+
+                            No Budgets Found
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

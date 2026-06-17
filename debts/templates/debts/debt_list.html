@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+
+        <h2>Debts & Credits</h2>
+
+        <a href="{% url 'add_debt' %}"
+           class="btn btn-success">
+
+            Add Debt
+
+        </a>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table">
+
+                <thead>
+
+                <tr>
+                    <th>Person</th>
+                    <th>Type</th>
+                    <th>Total</th>
+                    <th>Remaining</th>
+                    <th>Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for debt in debts %}
+
+                <tr>
+
+                    <td>{{ debt.person_name }}</td>
+
+                    <td>{{ debt.debt_type }}</td>
+
+                    <td>₹ {{ debt.amount }}</td>
+
+                    <td>₹ {{ debt.remaining_amount }}</td>
+
+                    <td>
+
+                        <a href="{% url 'debt_detail' debt.id %}"
+                           class="btn btn-primary btn-sm">
+
+                            View
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

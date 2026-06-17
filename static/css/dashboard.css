@@ -1,0 +1,43 @@
+.dashboard-card {
+    transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+.balance-card {
+    background: linear-gradient(
+        135deg,
+        #0d6efd,
+        #3b82f6
+    );
+    color: white;
+}
+
+.income-card {
+    background: linear-gradient(
+        135deg,
+        #198754,
+        #20c997
+    );
+    color: white;
+}
+
+.expense-card {
+    background: linear-gradient(
+        135deg,
+        #dc3545,
+        #ff6b6b
+    );
+    color: white;
+}
+
+.analytics-card {
+    min-height: 400px;
+}
+
+.chart-container {
+    position: relative;
+    height: 350px;
+}

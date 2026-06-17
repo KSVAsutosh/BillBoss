@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between">
+
+        <h2>Accounts</h2>
+
+        <a href="{% url 'add_account' %}"
+           class="btn btn-primary">
+
+            Add Account
+
+        </a>
+
+    </div>
+
+    <div class="alert alert-success mt-3">
+
+        <h5>
+            Total Balance :
+            ₹ {{ total_balance }}
+        </h5>
+
+    </div>
+
+    <div class="row">
+
+        {% for account in accounts %}
+
+        <div class="col-md-4 mb-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>
+                        {{ account.name }}
+                    </h5>
+
+                    <p>
+                        {{ account.account_type }}
+                    </p>
+
+                    <h4>
+                        ₹ {{ account.balance }}
+                    </h4>
+
+                    <a href="{% url 'edit_account' account.id %}"
+                       class="btn btn-warning btn-sm">
+
+                        Edit
+
+                    </a>
+
+                    <a href="{% url 'delete_account' account.id %}"
+                       class="btn btn-danger btn-sm">
+
+                        Delete
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-md-12">
+
+            <div class="alert alert-info">
+
+                No Accounts Found
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

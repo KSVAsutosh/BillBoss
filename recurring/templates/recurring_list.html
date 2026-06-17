@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-3">
+
+        <h2>Recurring Transactions</h2>
+
+        <a href="{% url 'add_recurring' %}"
+           class="btn btn-success">
+
+            Add Recurring
+
+        </a>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                <tr>
+                    <th>Title</th>
+                    <th>Amount</th>
+                    <th>Frequency</th>
+                    <th>Next Due</th>
+                    <th>Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for item in recurring_transactions %}
+
+                <tr>
+
+                    <td>{{ item.title }}</td>
+
+                    <td>₹ {{ item.amount }}</td>
+
+                    <td>{{ item.frequency }}</td>
+
+                    <td>{{ item.next_due_date }}</td>
+
+                    <td>
+
+                        <a href="{% url 'edit_recurring' item.id %}"
+                           class="btn btn-warning btn-sm">
+
+                            Edit
+
+                        </a>
+
+                        <a href="{% url 'delete_recurring' item.id %}"
+                           class="btn btn-danger btn-sm">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="5"
+                        class="text-center">
+
+                        No recurring transactions found.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
